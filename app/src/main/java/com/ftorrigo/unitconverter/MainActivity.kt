@@ -1,5 +1,6 @@
 package com.ftorrigo.unitconverter
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,15 +11,22 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,9 +49,16 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("RememberReturnType")
 @Composable
 fun UnitConverter() {
-    var unitValue = 0.00
+    var inputValue by remember { mutableStateOf("") }
+    var ouputValue by remember { mutableStateOf("") }
+    var inputUnit by remember { mutableStateOf("") }
+    var ouputUnit by remember { mutableStateOf("") }
+    var iExpanded by remember { mutableStateOf(false) }
+    var oExpanded by remember { mutableStateOf(false) }
+    var conversionFactor by remember { mutableStateOf(0.01) }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -55,7 +70,10 @@ fun UnitConverter() {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(value = "", onValueChange = {})
+        OutlinedTextField(value = inputValue, onValueChange = {
+            inputValue = it
+        },
+            label = { Text(text = "Enter the value") })
         Spacer(modifier = Modifier.height(16.dp))
 
         Row {
@@ -64,17 +82,55 @@ fun UnitConverter() {
                     Text(text = "Select")
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "arrow down")
                 }
+                DropdownMenu(expanded = iExpanded, onDismissRequest = { /*TODO*/ }) {
+                    DropdownMenuItem(
+                        text = { Text(text = "Centimeters") },
+                        onClick = { /*TODO*/ }
+                    )
+                    DropdownMenuItem(
+                        text = { Text(text = "Meters") },
+                        onClick = { /*TODO*/ }
+                    )
+                    DropdownMenuItem(
+                        text = { Text(text = "Feet") },
+                        onClick = { /*TODO*/ }
+                    )
+                    DropdownMenuItem(
+                        text = { Text(text = "Milimeters") },
+                        onClick = { /*TODO*/ }
+                    )
+                }
             }
+            Spacer(modifier = Modifier.width(16.dp))
             Box {
                 Button(onClick = { /*TODO*/ }) {
                     Text(text = "Select")
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "arrow down")
+                }
+                DropdownMenu(expanded = oExpanded, onDismissRequest = { /*TODO*/ }) {
+                    DropdownMenuItem(
+                        text = { Text(text = "Centimeters") },
+                        onClick = { /*TODO*/ }
+                    )
+                    DropdownMenuItem(
+                        text = { Text(text = "Meters") },
+                        onClick = { /*TODO*/ }
+                    )
+                    DropdownMenuItem(
+                        text = { Text(text = "Feet") },
+                        onClick = { /*TODO*/ }
+                    )
+                    DropdownMenuItem(
+                        text = { Text(text = "Milimeters") },
+                        onClick = { /*TODO*/ }
+                    )
                 }
             }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Results: ")
+        Text(text = inputValue)
     }
 
 
