@@ -78,11 +78,13 @@ fun UnitConverter() {
 
         Row {
             Box {
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = {
+                    iExpanded = !iExpanded
+                }) {
                     Text(text = "Select")
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "arrow down")
                 }
-                DropdownMenu(expanded = iExpanded, onDismissRequest = { /*TODO*/ }) {
+                DropdownMenu(expanded = iExpanded, onDismissRequest = { iExpanded = false }) {
                     DropdownMenuItem(
                         text = { Text(text = "Centimeters") },
                         onClick = { /*TODO*/ }
@@ -103,11 +105,11 @@ fun UnitConverter() {
             }
             Spacer(modifier = Modifier.width(16.dp))
             Box {
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = { oExpanded = !oExpanded }) {
                     Text(text = "Select")
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "arrow down")
                 }
-                DropdownMenu(expanded = oExpanded, onDismissRequest = { /*TODO*/ }) {
+                DropdownMenu(expanded = oExpanded, onDismissRequest = { oExpanded = false }) {
                     DropdownMenuItem(
                         text = { Text(text = "Centimeters") },
                         onClick = { /*TODO*/ }
