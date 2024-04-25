@@ -118,8 +118,8 @@ fun UnitConverterScreen() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showSystemUi = true)
 @Composable
-fun UnitConverterScreenPreview() {
+private fun UnitConverterScreenPreview() {
     UnitConverterScreen()
 }
