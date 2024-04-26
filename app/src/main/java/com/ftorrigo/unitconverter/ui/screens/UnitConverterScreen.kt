@@ -1,4 +1,4 @@
-package com.ftorrigo.unitconverter.screens
+package com.ftorrigo.unitconverter.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
